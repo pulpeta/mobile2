@@ -33,13 +33,13 @@ class Login extends CI_Controller {
                     redirect('welcome/login');
                     }
                 }
-            }
     }
 
-    function user_logout()
+    public function user_logout()
     {
         //distrugge sessione
         $this->session->sess_destroy();
         // reindirizza alla home page
-        redirect('welcome');
+        redirect('welcome/login');
+    }
 }

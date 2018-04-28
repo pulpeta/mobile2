@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <h1>Gestione contratti</h1>
     </div>
 
-    <div class="row" style="margin-bottom: 20px;">
+    <div class="row">
         <div class="col-sm-12">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#"><span class="oi oi-phone"></span></a>
@@ -28,8 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link text-success" href="<?php echo site_url('admincontroller'); ?>">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('admincontroller'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
@@ -38,8 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('operatori'); ?>">
+                        <li class="nav-item active">
+                            <a class="nav-link text-warning" href="#">
                                 <span class="oi oi-wifi"></span> Operatori
                             </a>
                         </li>
@@ -62,16 +62,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <div class="row" style="margin-bottom: 20px">
+    <div class="row" style="margin-top: 20px;">
         <div class="col-sm-10">
-
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <th>
+                        Operatore
+                    </th>
+                    <th style="width: 10%;">
+                        Elimina
+                    </th>
+                </thead>
+                <tbody>
+                    <?php foreach ($operatori as $op): ?>
+                        <tr>
+                            <td>
+                                <a href="#" style="text-decoration: none; color: black;">
+                                    <?php echo $op->operatore; ?>
+                                </a>
+                            </td>
+                            <td style="width: 10%">
+                                <a href="#">
+                                    <span class="oi oi-trash text-danger"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
+
         <div class="col-sm-2">
-            aggiungi
-            <br>
-            esporta
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary" href="#" style="width: 75%;">
+                        <span class="oi oi-plus"></span> Nuovo
+                    </a>
+                </div>
+            </div>
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-success" href="#"  style="width: 75%;">
+                        <span class="oi oi-share"></span> Export
+                    </a>
+                </div>
+            </div>
 
         </div>
+
     </div>
 
     <div class="modal-footer">
