@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link text-success" href="<?php echo site_url('admincontroller'); ?>">
+                            <a class="nav-link text-success" href="<?php echo site_url('Utenti'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo site_url('maintenance'); ?>">
                                 <span class="oi oi-wrench"></span> Opzioni
                             </a>
                         </li>
@@ -67,10 +67,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
         <div class="col-sm-2">
-            aggiungi
-            <br>
-            esporta
-
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary" href="<?php echo site_url(''); ?>" style="width: 75%;">
+                        <span class="oi oi-plus"></span> Nuovo
+                    </a>
+                </div>
+            </div>
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-success" href="#"  style="width: 75%;">
+                        <span class="oi oi-share"></span> Export
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 

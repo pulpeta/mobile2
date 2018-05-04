@@ -1,29 +1,46 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admincontroller extends CI_Controller{
+class Maintenance extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
 
         $loggedin = $this->session->userdata('logged-in');
-        $role = $this->session->userdata('role_id');
 
         if(!isset($loggedin) || $loggedin != TRUE){
             //not logged
             redirect('welcome/login');
-            }
+        }
     }
 
-    public function index(){
-        //mostra tutti gli utenti del sistema
-        $this->load->view('indexadmin');
+    function index(){
+
+        $users['users'] = $this->utentimodel->read_users();
+
+        $this->load->view('maintenance', $users);
+    }
+
+    function db_optimization (){
+        //ottimizza tutte le tabelle del db
+        $DB = new mysqli ('localhost', 'root', 'root');
+        $dbname = 'mobile';
+        $this->maintenancemodel->db_optimization($DB, $dbname);
+
+        redirect('maintenance');
+    }
+
+    function db_backup(){
+        $this->maintenancemodel->db_backup();
+
+        redirect('maintenance');
     }
 
     function edit_user(){
-        $id = $this->uri->segment(4);
+        $id = $this->uri->segment(3);
+
         $users['users'] = $this->adminmodel->read_single_user($id);
-        $this->load->view('admin/edit_user', array_merge($users));
+        $this->load->view('edit_user', array_merge($users));
     }
 
     function update_user(){
@@ -87,7 +104,7 @@ class Admincontroller extends CI_Controller{
     }
 
     function new_user(){
-       $this->load->view('admin/create_user');
+        $this->load->view('admin/create_user');
     }
 
     function create_user(){
@@ -103,22 +120,22 @@ class Admincontroller extends CI_Controller{
             echo '<p>';
             echo validation_errors();
             echo '</p>';
-            }else{
-                $creationdate = date('Y-m-d H:i:s');
-                $pw = $this->input->post('confirmpassword');
-                $cpw = sha1($pw);
-                //TO DO funzione scadenza password
-                $data=array(
-                    'full_name' => $this->input->post('full_name'),
-                    'username' => $this->input->post('username'),
-                    'password' => $cpw,
-                    'role_id' => $this->input->post('role_id'),
-                    'enabled' => 0,
-                    'createdAt' => $creationdate
-                    //TO DO password expire
-                );
-                $this->adminmodel->create_user($data);
-            }
+        }else{
+            $creationdate = date('Y-m-d H:i:s');
+            $pw = $this->input->post('confirmpassword');
+            $cpw = sha1($pw);
+            //TO DO funzione scadenza password
+            $data=array(
+                'full_name' => $this->input->post('full_name'),
+                'username' => $this->input->post('username'),
+                'password' => $cpw,
+                'role_id' => $this->input->post('role_id'),
+                'enabled' => 0,
+                'createdAt' => $creationdate
+                //TO DO password expire
+            );
+            $this->adminmodel->create_user($data);
+        }
 
         //trace user creation
         $tracelog=array(
@@ -148,4 +165,6 @@ class Admincontroller extends CI_Controller{
 
         redirect('admin/admincontroller');
     }
+
+
 }

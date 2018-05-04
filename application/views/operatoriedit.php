@@ -38,12 +38,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link text-warning" href="<?php echo site_url('operatori'); ?>">
                                 <span class="oi oi-wifi"></span> Operatori
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="<?php echo site_url('maintenance'); ?>">
                                 <span class="oi oi-wrench"></span> Opzioni
                             </a>
@@ -62,44 +62,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <div class="row" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="col-sm-10">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <th>
-                        Operatore
-                    </th>
-                    <th style="width: 10%;">
-                        Elimina
-                    </th>
-                </thead>
-                <tbody>
-                    <?php foreach ($operatori as $op): ?>
-                        <tr>
-                            <td>
-                                <a href="<?php echo site_url("operatori/edit_operatore/$op->id"); ?>" style="text-decoration: none; color: black;">
-                                    <?php echo $op->operatore; ?>
-                                </a>
-                            </td>
-                            <td class="text-center" style="width: 10%">
-                                <a href="<?php echo site_url("operatori/elimina_operatore/$op->id"); ?>">
-                                    <span class="oi oi-trash text-danger"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <form class="form-inline" name="crea_operatore" method="post" action="<?php echo site_url('operatori/update_operatore'); ?>">
+                <?php foreach ($operatore as $op): ?>
+                    <input type="hidden" name="id" value="<?php echo $op->id ?>">
+                    <label class="form-control mb-2 mr-sm-3">Aggiorna operatore: </label>
+                    <input type="text" class="form-control mb-2 mr-sm-3" id="operatore" name="operatore" value="<?php echo $op->operatore ?>" required>
+                    <button type="submit" class="btn btn-success mb-2">Aggiorna</button>
+                <?php endforeach; ?>
+            </form>
         </div>
 
         <div class="col-sm-2">
-            <div class="row text-center" style="margin-bottom: 10px;">
-                <div class="col-sm-12">
-                    <a class="btn btn-primary" href="<?php echo site_url('operatori/create_operatore'); ?>" style="width: 75%;">
-                        <span class="oi oi-plus"></span> Nuovo
-                    </a>
-                </div>
-            </div>
+
         </div>
 
     </div>

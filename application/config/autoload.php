@@ -142,5 +142,8 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     'adminmodel',
     'loginuser',
-    'contrattimodel'
+    'contrattimodel',
+    'operatorimodel',
+    'maintenancemodel',
+    'utentimodel'
 );

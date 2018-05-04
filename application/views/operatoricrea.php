@@ -62,44 +62,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <div class="row" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="col-sm-10">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <th>
-                        Operatore
-                    </th>
-                    <th style="width: 10%;">
-                        Elimina
-                    </th>
-                </thead>
-                <tbody>
-                    <?php foreach ($operatori as $op): ?>
-                        <tr>
-                            <td>
-                                <a href="<?php echo site_url("operatori/edit_operatore/$op->id"); ?>" style="text-decoration: none; color: black;">
-                                    <?php echo $op->operatore; ?>
-                                </a>
-                            </td>
-                            <td class="text-center" style="width: 10%">
-                                <a href="<?php echo site_url("operatori/elimina_operatore/$op->id"); ?>">
-                                    <span class="oi oi-trash text-danger"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <form class="form-inline" name="crea_operatore" method="post" action="<?php echo site_url('operatori/add_operatore'); ?>">
+                <label class="form-control mb-2 mr-sm-3">Aggiungi operatore: </label>
+                <input type="text" class="form-control mb-2 mr-sm-3" id="operatore" name="operatore" placeholder="Nome Operatore" required>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
         </div>
 
         <div class="col-sm-2">
-            <div class="row text-center" style="margin-bottom: 10px;">
-                <div class="col-sm-12">
-                    <a class="btn btn-primary" href="<?php echo site_url('operatori/create_operatore'); ?>" style="width: 75%;">
-                        <span class="oi oi-plus"></span> Nuovo
-                    </a>
-                </div>
-            </div>
+
         </div>
 
     </div>

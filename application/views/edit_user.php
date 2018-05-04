@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
         <div class="col-sm-4">
-            <form class="form-group" name="edituser_form" method="post" action="<?php echo site_url('admin/admincontroller/update_user'); ?>">
+            <form class="form-group" name="edituser_form" method="post" action="<?php echo site_url(maintenance/update_user'); ?>">
                 <?php foreach ($users as $user): ?>
                     <input type="hidden" name="id_user" value="<?php echo $user->id_user ?>">
                     <label class="text-primary" style="margin-top: 10px">Name</label>

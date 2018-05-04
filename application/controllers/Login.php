@@ -28,7 +28,7 @@ class Login extends CI_Controller {
                     'logged-in' => true
                     );
                 $this->session->set_userdata($data);
-                redirect('admincontroller');
+                redirect('Utenti');
                 }else{
                     redirect('welcome/login');
                     }

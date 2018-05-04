@@ -1,94 +1,103 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Smart Facility 0.1</title>
+    <meta charset="utf-8">
+    <title>SF - Admin Area</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/glyphicons.css'); ?>" media="all">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-grid.min.css'); ?>" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-reboot.min.css'); ?>" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/open-iconic-bootstrap.min.css'); ?>" media="all">
 </head>
+
 <body>
-
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span class="glyphicons glyphicons-factory"></span> SF</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <!-- user menu -->
-                <li class="active"><a href="/smartfacilities">General Trend <span class="sr-only">(current)</span><span class="glyphicons glyphicons-pie-chart"></span></a></li>
-                <!-- supervisor menu -->
-                <li><a href="#">Users Permissions <span class="glyphicons glyphicons-keys"></span></a></li>
-                <li><a href="#">Operational Settings <span class="glyphicons glyphicons-adjust-alt"></span></a></li>
-                <!-- administrator menu -->
-                <li><a href="#">Users Management <span class="glyphicons glyphicons-group"></span></a></li>
-                <li><a href="#">Maintenance <span class="glyphicons glyphicons-blacksmith"></span></a></li>
-                <li><a href="#">Logs <span class="glyphicons glyphicons-stethoscope"></span></a></li>
-
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-    <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-4">
-
-        </div>
+<div class="container container-fluid">
+    <div class="modal-header">
+        <h1>Gestione contratti</h1>
     </div>
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#"><span class="oi oi-phone"></span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('Utenti'); ?>">
+                                <span class="oi oi-briefcase"></span> Contratti
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-people"></span> Clienti
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link text-warning" href="<?php echo site_url('operatori'); ?>">
+                                <span class="oi oi-wifi"></span> Operatori
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('maintenance'); ?>">
+                                <span class="oi oi-wrench"></span> Opzioni
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('login/user_logout'); ?>">
+                                <span class="oi oi-account-logout"></span> Logout
+                            </a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
 
-        </div>
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-4">
-
+                </span>
+                </div>
+            </nav>
         </div>
     </div>
 
-    <footer class="panel-footer">
-        <p class="text-muted">
-            Smart Facility <span class="glyphicon glyphicon-copyright-mark"></span> Developed by Federico Sibella
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-10">
+
+        </div>
+
+        <div class="col-sm-2">
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary" href="#" style="width: 75%;">
+                        <span class="oi oi-plus"></span> Nuovo
+                    </a>
+                </div>
+            </div>
+            <div class="row text-center" style="margin-bottom: 10px;">
+                <div class="col-sm-12">
+                    <a class="btn btn-success" href="#"  style="width: 75%;">
+                        <span class="oi oi-share"></span> Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <p class="text-muted text-center">
+            Developed by P2Easy
         </p>
-        <p>
-            Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>
-        </p>
-    </footer>
+    </div>
+
+</div>
 
 </body>
 
-<script src="<?php echo base_url('resources/js/jquery-3.2.1.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/jquery-3.3.1.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/js/npm.js'); ?>"></script>>
-<script src="<?php echo base_url('resources/js/Chart.js'); ?>"></script>
-<script src="<?php echo base_url('resources/js/Chart.bundle.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/popper.min.js'); ?>"></script>
 
 </html>

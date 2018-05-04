@@ -13,7 +13,7 @@ class Maintenancemodel extends CI_Model{
         $results->close();
         foreach ($allDbs as $dbName)
         {
-            if ($dbName == 'smartfacility'){
+            if ($dbName == 'mobile'){
                 $DB->select_db($dbName);
                 $results = $DB->query('SHOW TABLE STATUS WHERE Data_free > 0');
                 if ($results->num_rows > 0){
@@ -28,17 +28,6 @@ class Maintenancemodel extends CI_Model{
     }
 
     function db_backup(){
-
-        $data = date('y-m-d');
-        $filename = 'sf_db_bck_'.$data.'.sql';
-
-        $tracelog=array(
-            'date' => date('Y-m-d H:i:s'),
-            'username' => $_SESSION['username'],
-            'event_type' => 'DB Maintenance',
-            'event' => 'DB backup task executed'
-        );
-        $this->logsmodel->trace_log($tracelog);
 
         // Load the DB utility class
         $this->load->dbutil();
