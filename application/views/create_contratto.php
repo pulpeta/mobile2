@@ -34,12 +34,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('clienti'); ?>">
+                            <a class="nav-link text-success" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning" href="<?php echo site_url('operatori'); ?>">
+                            <a class="nav-link" href="<?php echo site_url('operatori'); ?>">
                                 <span class="oi oi-wifi"></span> Operatori
                             </a>
                         </li>
@@ -63,18 +63,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
     <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-        <div class="col-sm-10">
-            <form class="form-inline" name="crea_operatore" method="post" action="<?php echo site_url('operatori/update_operatore'); ?>">
-                <?php foreach ($operatore as $op): ?>
-                    <input type="hidden" name="id" value="<?php echo $op->id ?>">
-                    <label class="form-control mb-2 mr-sm-3">Aggiorna operatore: </label>
-                    <input type="text" class="form-control mb-2 mr-sm-3" id="operatore" name="operatore" value="<?php echo $op->operatore ?>" required autofocus>
-                    <button type="submit" class="btn btn-success mb-2">Aggiorna</button>
-                <?php endforeach; ?>
+        <div class="col-sm-8">
+            <form class="form-group" name="update_contratto" method="post" action="<?php echo site_url('clienti/salva_contratto'); ?>">
+                <?php foreach($cliente as $i): ?>
+                    <input type="hidden" id="cliente_id" name="cliente_id" value="<?php echo $i->id; ?>">
+                <? endforeach; ?>
+                    <label>Crea Contratto:</label>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-sm-12">
+                            <select class="form-control" id="operatore" name="operatore">
+                                <?php foreach ($operatori as $o): ?>
+                                    <?php echo '<option value="'.$o->id.'">'.$o->operatore.'</option>'; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero Telefonico" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="vincolo" name="vincolo" placeholder="Vincolo">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="scadenza" name="scadenza" placeholder="Scadenza contratto">
+                        </div>
+                    </div>
+
+                <button type="submit" class="btn btn-primary mb-2">Salva</button>
+
+                <p class="text-warning">
+                    <?php echo form_error('numero'); ?>
+                    <br>
+                    <?php echo form_error('vincolo'); ?>
+                    <br>
+                    <?php echo form_error('scadenza'); ?>
+                </p>
+
             </form>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
 
         </div>
 

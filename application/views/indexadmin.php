@@ -29,12 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link text-success" href="<?php echo site_url('Utenti'); ?>">
+                            <a class="nav-link text-success" href="<?php echo site_url('contratti'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
@@ -61,26 +61,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </nav>
         </div>
     </div>
+    <h3 class="text-center">Estrai dati</h3>
+    <div class="row" style="margin-bottom: 40px; margin-top: 40px;">
 
-    <div class="row" style="margin-bottom: 20px">
-        <div class="col-sm-10">
+        <div class="col-sm-4 text-center">
+            <a href="<?php echo site_url('contratti/estrai_no_vincolo'); ?>"><button class="btn btn-lg btn-success" style="height: 150px; width: 150px;">No Vincolo</button></a>
+        </div>
+        <div class="col-sm-4 text-center">
+            <a href="<?php echo site_url('contratti/estrai_24'); ?>"><button class="btn btn-lg btn-info" style="height: 150px; width: 150px;">24 Mesi</button></a>
+        </div>
+        <div class="col-sm-4 text-center">
+            <a href="<?php echo site_url('contratti/estrai_30'); ?>"><button class="btn btn-lg btn-primary" style="height: 150px; width: 150px;">30 Mesi</button></a>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 40px; margin-top: 40px;">
+        <div class="col-sm-4 text-center">
+            <a href="<?php echo site_url('contratti/check_30'); ?>"><button class="btn btn-lg btn-warning" style="height: 150px; width: 150px; color: white;">Check over 30</button></a>
+        </div>
+        <div class="col-sm-4 text-center">
 
         </div>
-        <div class="col-sm-2">
-            <div class="row text-center" style="margin-bottom: 10px;">
-                <div class="col-sm-12">
-                    <a class="btn btn-primary" href="<?php echo site_url(''); ?>" style="width: 75%;">
-                        <span class="oi oi-plus"></span> Nuovo
-                    </a>
-                </div>
-            </div>
-            <div class="row text-center" style="margin-bottom: 10px;">
-                <div class="col-sm-12">
-                    <a class="btn btn-success" href="#"  style="width: 75%;">
-                        <span class="oi oi-share"></span> Export
-                    </a>
-                </div>
-            </div>
+        <div class="col-sm-4 text-center">
+            <a href="<?php echo site_url('contratti/reset_avvisati'); ?>"><button class="btn btn-lg btn-danger" style="height: 150px; width: 150px;">Reset Avvisati</button></a>
         </div>
     </div>
 

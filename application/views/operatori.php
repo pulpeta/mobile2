@@ -29,12 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('Utenti'); ?>">
+                            <a class="nav-link" href="<?php echo site_url('contratti'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>

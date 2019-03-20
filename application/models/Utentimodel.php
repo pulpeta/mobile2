@@ -6,7 +6,7 @@ class Utentimodel extends CI_Model
 {
 
     function create_user($data){
-        $this->db->insert('sf_users', $data);
+        $this->db->insert('utenti', $data);
     }
 
     function read_users(){
@@ -21,17 +21,8 @@ class Utentimodel extends CI_Model
 
     function read_single_user($id){
         $this->db->select('*');
-        $this->db->from('sf_users');
-        $this->db->where('sf_users.id_user', $id);
-        $query = $this->db->get()->result();
-
-        return $query;
-    }
-
-    function read_user_name($id){
-        $this->db->select('full_name');
-        $this->db->from('sf_users');
-        $this->db->where('sf_users.id_user', $id);
+        $this->db->from('utenti');
+        $this->db->where('id_utente', $id);
         $query = $this->db->get()->result();
 
         return $query;
@@ -39,20 +30,20 @@ class Utentimodel extends CI_Model
 
     function read_password($id){
         $this->db->select('password');
-        $this->db->from('sf_users');
-        $this->db->where('sf_users.id_user', $id);
+        $this->db->from('utenti');
+        $this->db->where('utenti.id_utente', $id);
         $query = $this->db->get()->result();
 
         return $query;
     }
 
     function update_user($id, $data){
-        $this->db->where('id_user', $id);
-        $this->db->update('sf_users', $data);
+        $this->db->where('id_utente', $id);
+        $this->db->update('utenti', $data);
     }
 
     function delete_user($id){
-        $this->db->where('id_user', $id);
-        $this->db->delete('sf_users');
+        $this->db->where('id_utente', $id);
+        $this->db->delete('utenti');
     }
 }

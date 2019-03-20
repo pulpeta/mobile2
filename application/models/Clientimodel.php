@@ -2,48 +2,83 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //il nome della classe qui sotto deve corrispondere al nome del file
-class Utentimodel extends CI_Model
+class Clientimodel extends CI_Model
 {
 
-    function create_user($data){
-        $this->db->insert('utenti', $data);
+    function create_cliente($data){
+
+        $this->db->insert('clienti', $data);
+
     }
 
-    function read_users(){
+    function read_clienti($cognome, $cfpi, $limit, $filter){
+
         //popola la lista degli utenti ordinandola
-        $this->db->select('id_utente, utente');
-        $this->db->from('utenti');
-        $this->db->order_by('utente', 'ASC');
-        $query = $this->db->get()->result();
-
-        return $query;
-    }
-
-    function read_single_user($id){
         $this->db->select('*');
-        $this->db->from('utenti');
-        $this->db->where('id_utente', $id);
+        $this->db->from('clienti');
+        $this->db->order_by('cf', 'DESC');
+        $this->db->order_by('cognome', 'ASC');
+        if($cognome){
+            $this->db->where('cognome', $cognome);
+        }
+        if($cfpi){
+            $this->db->where('cf', $cfpi);
+            $this->db->or_where('piva', $cfpi);
+        }
+        if ($filter == 'privati'){
+            $this->db->where('cf !=', null);
+        }
+        if ($filter == 'aziende'){
+            $this->db->where('piva !=', null);
+        }
+        if($limit > 0){
+            $this->db->limit($limit);
+        }
+        $query = $this->db->get()->result();
+
+        return $query;
+
+    }
+
+    function get_clienti_count($cognome, $cfpi){
+
+        //popola la lista degli utenti ordinandola
+        $this->db->select('*');
+        $this->db->from('clienti');
+        $this->db->order_by('cf', 'DESC');
+        $this->db->order_by('cognome', 'ASC');
+        if($cognome){
+            $this->db->where('cognome', $cognome);
+        }
+        if ($cfpi){
+            $this->db->where('piva', $cfpi)->or_where('cf', $cfpi);
+        }
+        $query = $this->db->get()->result();
+
+        return $query->num_rows();
+
+    }
+
+
+    function read_single_cliente($id){
+
+        $this->db->select('*');
+        $this->db->from('clienti');
+        $this->db->where('id', $id);
         $query = $this->db->get()->result();
 
         return $query;
     }
 
-    function read_password($id){
-        $this->db->select('password');
-        $this->db->from('utenti');
-        $this->db->where('utenti.id_utente', $id);
-        $query = $this->db->get()->result();
+    function update_cliente($id, $data){
 
-        return $query;
+        $this->db->where('id', $id);
+        $this->db->update('clienti', $data);
     }
 
-    function update_user($id, $data){
-        $this->db->where('id_utente', $id);
-        $this->db->update('utenti', $data);
-    }
+    function delete_cliente($id){
 
-    function delete_user($id){
-        $this->db->where('id_utente', $id);
-        $this->db->delete('utenti');
+        $this->db->where('id', $id);
+        $this->db->delete('clienti');
     }
 }

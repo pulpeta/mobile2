@@ -10,25 +10,19 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == FALSE){
-            //if failed
-            //redirect('welcome/login');
             redirect('welcome/login');
-            echo validation_errors();
         }else{
             $user = $this->loginuser->validate_credentials($this->input->post('username'), $this->input->post('password'));
-
-            //inserire verifica se username esiste
-            //se non esiste redirect a login
 
             if ($user){
                 //crea dati sessione
                 $data = array(
-                    'id_user' => $user->id,
-                    'username' => $user->username,
+                    'id_utente' => $user->id_utente,
+                    'utente' => $user->utente,
                     'logged-in' => true
                     );
                 $this->session->set_userdata($data);
-                redirect('Utenti');
+                redirect('contratti');
                 }else{
                     redirect('welcome/login');
                     }

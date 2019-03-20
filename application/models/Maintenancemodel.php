@@ -44,8 +44,4 @@ class Maintenancemodel extends CI_Model{
         force_download($filename, $backup);
     }
 
-    function db_stats(){
-
-    }
-
 }

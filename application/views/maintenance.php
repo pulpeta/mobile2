@@ -29,12 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('Utenti'); ?>">
+                            <a class="nav-link" href="<?php echo site_url('contratti'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Backup dati</strong>
                         </a>
                     </div>
-                    <div id="collapse1" class="collapse show" data-parent="#accordion">
+                    <div id="collapse1" class="collapse" data-parent="#accordion">
                         <div class="card-body">
                             <div class="row text-center">
                                 <div class="col-sm-6">
@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </a>
                     </div>
 
-                    <div id="collapse2" class="collapse" data-parent="#accordion">
+                    <div id="collapse2" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
                             <div class="row" style="margin-top: 20px;">
                                 <div class="col-sm-10">
@@ -122,9 +122,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </a>
                                                 </td>
                                                 <td class="text-center" style="width: 10%">
-                                                    <a href="<?php echo site_url("operatori/elimina_operatore/$ut->id_utente"); ?>">
-                                                        <span class="oi oi-trash text-danger"></span>
-                                                    </a>
+                                                    <?php
+                                                        if($ut->id_utente != 1){
+
+                                                            echo '<a href="'. site_url("maintenance/delete_user/$ut->id_utente").'">';
+                                                            echo '<span class="oi oi-trash text-danger"></span>';
+                                                            echo '</a>';
+                                                        }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -135,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="col-sm-2">
                                     <div class="row text-center" style="margin-bottom: 10px;">
                                         <div class="col-sm-12">
-                                            <a class="btn btn-primary" href="<?php echo site_url('operatori/create_operatore'); ?>" style="width: 75%;">
+                                            <a class="btn btn-primary" href="<?php echo site_url('maintenance/new_user'); ?>" style="width: 75%;">
                                                 <span class="oi oi-plus"></span> Nuovo
                                             </a>
                                         </div>

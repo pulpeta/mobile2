@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link text-warning" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link text-danger" href="<?php echo site_url('maintenance'); ?>">
+                            <a class="nav-link" href="<?php echo site_url('maintenance'); ?>">
                                 <span class="oi oi-wrench"></span> Opzioni
                             </a>
                         </li>
@@ -64,19 +64,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="col-sm-10">
-            <form class="form-inline" name="crea_utente" method="post" action="<?php echo site_url('maintenance/create_user'); ?>">
-                <label class="form-control mb-2 mr-sm-3">Aggiungi Utente: </label>
-                <input type="text" class="form-control mb-2 mr-sm-3" id="utente" name="utente" placeholder="Nome Utente" required>
-                <input type="password" class="form-control mb-2 mr-sm-3" id="password" name="password" placeholder="Password" required>
-                <input type="password" class="form-control mb-2 mr-sm-3" id="confermapassword" name="confermapassword" placeholder="Conferma Password" required>
-                <p class="text-warning">
-                    <?php echo form_error('utente'); ?>
-                    <br>
-                    <?php echo form_error('password'); ?>
-                    <br>
-                    <?php echo form_error('confermapassword'); ?>
-                </p>
+            <form class="form-group" name="crea_utente" method="post" action="<?php echo site_url('clienti/create_cliente'); ?>">
+                <label>Aggiungi Cliente:</label>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                    </div>
+                    <div class="col-sm-7"></div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="cognome" name="cognome" placeholder="Cognome o Rag. Sociale" required>
+                    </div>
+                    <div class="col-sm-7"></div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="cf" name="cf" placeholder="Codice Fiscale">
+                    </div>
+                    <div class="col-sm-7"></div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="piva" name="piva" placeholder="Partita IVA">
+                    </div>
+                    <div class="col-sm-7"></div>
+                </div>
+
                 <button type="submit" class="btn btn-primary mb-2">Salva</button>
+
+                <p class="text-warning">
+                    <?php echo form_error('nome'); ?>
+                    <br>
+                    <?php echo form_error('cognome'); ?>
+                    <br>
+                    <?php echo form_error('cf'); ?>
+                    <br>
+                    <?php echo form_error('piva'); ?>
+                </p>
+
             </form>
         </div>
 

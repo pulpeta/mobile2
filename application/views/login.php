@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SF - Login</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" media="all"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-grid.min.css'); ?>" media="all"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-reboot.min.css'); ?>" media="all"/>
@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <input type="password" name="password" class="form-control" placeholder="Password"  style="margin-top: 10px" required>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 50px"><span class="oi oi-person"></span> Log in</button>
             </form>
+            <?php echo form_error('username'); ?>
+            <?php echo form_error('password'); ?>
         </div>
 
         <div class="col-sm-4"></div>

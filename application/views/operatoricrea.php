@@ -29,12 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('Utenti'); ?>">
+                            <a class="nav-link" href="<?php echo site_url('contratti'); ?>">
                                 <span class="oi oi-briefcase"></span> Contratti
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo site_url('clienti'); ?>">
                                 <span class="oi oi-people"></span> Clienti
                             </a>
                         </li>
@@ -66,8 +66,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-sm-10">
             <form class="form-inline" name="crea_operatore" method="post" action="<?php echo site_url('operatori/add_operatore'); ?>">
                 <label class="form-control mb-2 mr-sm-3">Aggiungi operatore: </label>
-                <input type="text" class="form-control mb-2 mr-sm-3" id="operatore" name="operatore" placeholder="Nome Operatore" required>
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <input type="text" class="form-control mb-2 mr-sm-3" id="operatore" name="operatore" placeholder="Nome Operatore" required autofocus>
+                <button type="submit" class="btn btn-primary mb-2">Salva</button>
             </form>
         </div>
 

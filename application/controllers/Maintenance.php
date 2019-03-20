@@ -39,131 +39,79 @@ class Maintenance extends CI_Controller{
     function edit_user(){
         $id = $this->uri->segment(3);
 
-        $users['users'] = $this->adminmodel->read_single_user($id);
-        $this->load->view('edit_user', array_merge($users));
+        $users['users'] = $this->utentimodel->read_single_user($id);
+        $this->load->view('edit_user', $users);
     }
 
     function update_user(){
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('utente', 'Utente', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-        $this->form_validation->set_rules('confirmpassword', 'Password Confirmation', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('confermapassword', 'Conferma Password', 'trim|required|matches[password]');
+
+        $id = $this->input->post('id_utente');
 
         if ($this->form_validation->run() == FALSE){
-            //if failed
-            echo '<p>';
-            echo validation_errors();
-            echo '</p>';
-        }
-        //verifica eventuali cambi della password
-        //recupera quella vecchia dal db
-        $id = $this->input->post('id_user');
-        $editdate = date('Y-m-d H:i:s');
-        $pw = $this->input->post('confirmpassword');
-        $old_pws = $this->adminmodel->read_password($id);
-        foreach ($old_pws as $old_pw) {
-            $p = $old_pw->password;
-        }
-
-        if ($p != $pw) {
-            //se non coincidono la considera come cambiata e applica ash
-            $date = date('Y-m-d H:i:s');
-            $newdate = strtotime ( '+3 month' , strtotime ( $date ) );
-            $newdate = date ( 'Y-m-d H:i:s' , $newdate );
-            $data=array(
-                'full_name' => $this->input->post('full_name'),
-                'username' => $this->input->post('username'),
-                'password' => $pw,
-                'role_id' => $this->input->post('role_id'),
-                'editedAt' => $editdate,
-                'pwexpireAt' => $newdate
-            );
+            $users['users'] = $this->utentimodel->read_single_user($id);
+            $this->load->view('edit_user', $users);
         }else{
-            $data=array(
-                'full_name' => $this->input->post('full_name'),
-                'username' => $this->input->post('username'),
-                'editedAt' => $editdate,
-                'role_id' => $this->input->post('role_id')
-            );
+            $confpw = $this->input->post('confermapassword');
+            $old_pw = $this->utentimodel->read_password($id);
+            if($old_pw[0] == $confpw){
+                $data=array(
+                    'utente' => $this->input->post('utente'),
+                );
+            }else{
+                $confpw=sha1($confpw);
+                $data=array(
+                    'utente' => $this->input->post('utente'),
+                    'password' => $confpw,
+                );
+            }
+            $this->utentimodel->update_user($id, $data);
+            $users['users'] = $this->utentimodel->read_single_user($id);
+            $this->load->view('edit_user', $users);
         }
-
-        $this->adminmodel->update_user($id, $data);
-
-        //trace user editing
-        $tracelog=array(
-            'date' => $editdate,
-            'username' => $_SESSION['username'],
-            'event_type' => 'User Updated',
-            'event' => $this->input->post('full_name'). ' has been updated'
-        );
-        $this->logsmodel->trace_log($tracelog);
-
-        redirect('admin/admincontroller');
     }
 
     function new_user(){
-        $this->load->view('admin/create_user');
+        $this->load->view('create_user');
     }
 
     function create_user(){
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('full_name', 'Full_Name', 'trim|required');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[sf_users.username]');
+        $this->form_validation->set_rules('utente', 'Utente', 'trim|required|is_unique[utenti.utente]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-        $this->form_validation->set_rules('confirmpassword', 'Password Confirmation', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('confermapassword', 'Conferma Password', 'trim|required|matches[password]');
 
         if ($this->form_validation->run() == FALSE){
-            //if failed
-            echo '<p>';
-            echo validation_errors();
-            echo '</p>';
+            $this->load->view('create_user');
         }else{
-            $creationdate = date('Y-m-d H:i:s');
-            $pw = $this->input->post('confirmpassword');
+            $pw = $this->input->post('confermapassword');
             $cpw = sha1($pw);
-            //TO DO funzione scadenza password
-            $data=array(
-                'full_name' => $this->input->post('full_name'),
-                'username' => $this->input->post('username'),
+
+            $user=array(
+                'utente' => $this->input->post('utente'),
                 'password' => $cpw,
-                'role_id' => $this->input->post('role_id'),
-                'enabled' => 0,
-                'createdAt' => $creationdate
-                //TO DO password expire
             );
-            $this->adminmodel->create_user($data);
+            $this->utentimodel->create_user($user);
+            redirect('maintenance');
         }
 
-        //trace user creation
-        $tracelog=array(
-            'date' => $creationdate,
-            'username' => $_SESSION['username'],
-            'event_type' => 'User Creation',
-            'event' => $this->input->post('full_name'). ' has been created'
-        );
-        $this->logsmodel->trace_log($tracelog);
-
-        redirect('admin/admincontroller');
     }
 
     function delete_user(){
-        $id = $this->uri->segment(4);
-
-        //verifica che non sia l'utente corrente
-        $user_id = $this->session->userdata('id_user');
-        if($id == $user_id){
-            //redirect('admincontroller');
-        }
+        $id = $this->uri->segment(3);
 
         if ($id != 1){
             //se non è il default admin cancella l'utente
-            $this->adminmodel->delete_user($id);
+            $this->utentimodel->delete_user($id);
         }
 
-        redirect('admin/admincontroller');
+        redirect('maintenance');
     }
 
 
