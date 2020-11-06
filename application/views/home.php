@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Home</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -18,11 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-sm-4"></div>
 
         <div class="col-sm-4">
-            <form class="form-signin" name="login_form" method="post" action="<?php echo site_url('login/user_login'); ?>">
-                <h2 class="form-signin-heading" align="center"><img src="<?php echo base_url('resources/img/logo.png'); ?>"/></h2>
-                <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                <input type="password" name="password" class="form-control" placeholder="Password"  style="margin-top: 10px" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 50px"><span class="oi oi-person"></span> Log in</button>
+            <form class="form-signin" name="consuntivazione_form" method="post" action="<?php echo site_url('consuntivazioni/inserisci'); ?>">
+                <h2 class="form-signin-heading" align="center">Nuova Consuntivazione</h2>
+                <input type="text" name="ore" class="form-control" placeholder="0.00" required autofocus>
+                <input type="text" name="descrizione" class="form-control" placeholder="Descrizione"  style="margin-top: 10px" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 50px"></span>Inserisci</button>
+				<button class="btn btn-lg btn-primary btn-block" type="reset" style="margin-top: 50px"></span>Reset</button>
             </form>
             <?php echo form_error('username'); ?>
             <?php echo form_error('password'); ?>

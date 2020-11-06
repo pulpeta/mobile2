@@ -2,14 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //il nome della classe qui sotto deve corrispondere al nome del file
-class Clientimodel extends CI_Model
+class Riferimentimodel extends CI_Model
 {
 
-    function Readclienti(){
+    function Readriferimenti(){
 
 		$this->db->select('*');
-		$this->db->from('clienti');
-		$this->db->order_by('cliente', 'ASC');
+		$this->db->from('riferimenti');
+		$this->db->order_by('riferimento', 'ASC');
 		$query = $this->db->get()->result();
 
 		return $query;
