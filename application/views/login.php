@@ -5,9 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-grid.min.css'); ?>" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/bootstrap-reboot.min.css'); ?>" media="all"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('resources/css/open-iconic-bootstrap.min.css'); ?>" media="all">
 </head>
 
 <body>
@@ -18,8 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-sm-4"></div>
 
         <div class="col-sm-4">
-            <form class="form-signin" name="login_form" method="post" action="<?php echo site_url('login/user_login'); ?>">
-                <h2 class="form-signin-heading" align="center"><img src="<?php echo base_url('resources/img/logo.png'); ?>"/></h2>
+            <form class="form-signin" style="border-radius: 20px; background-color: #e3e3e3 ; box-shadow: 10px 10px 5px #888888; padding: 10px 40px 30px 40px;" name="login_form" method="post" action="<?php echo site_url('login/user_login'); ?>">
+                <h2 class="form-signin-heading" align="center" style="margin-bottom: 30px; margin-top: 30px"><span class="oi oi-phone"></span> Gestione contratti</h2>
                 <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
                 <input type="password" name="password" class="form-control" placeholder="Password"  style="margin-top: 10px" required>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 50px"><span class="oi oi-person"></span> Log in</button>
@@ -35,8 +36,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="<?php echo base_url('resources/js/jquery-3.2.1.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/npm.js'); ?>"></script>
 
 </html>

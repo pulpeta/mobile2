@@ -17,14 +17,14 @@ class Login extends CI_Controller {
             if ($user){
                 //crea dati sessione
                 $data = array(
-                    'id' => $user->id_utente,
+                    'id_utente' => $user->id_utente,
                     'utente' => $user->utente,
                     'logged-in' => true
                     );
                 $this->session->set_userdata($data);
-                redirect('consuntivazioni');
+                redirect('contratti');
                 }else{
-                    redirect('login');
+                    redirect('welcome/login');
                     }
                 }
     }
